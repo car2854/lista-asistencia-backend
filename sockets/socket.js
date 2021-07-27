@@ -42,10 +42,16 @@ const getVideo = (client = Socket) => {
     
     const {video, img1, img2, img3} = payload;
 
+
+    // Amazon API
+
     const params = {
+      // Primera foto
       SourceImage: {
         Bytes: video
       },
+
+      // Segunda foto
       TargetImage: {
         S3Object: {
           Bucket: 'mybucketpruebareco',
@@ -65,16 +71,7 @@ const getVideo = (client = Socket) => {
         let respuesta = 0;
         response.FaceMatches.forEach(data => {
           
-          let position   = data.Face.BoundingBox
           let similarity = data.Similarity
-          // console.log(similarity);
-          // client.emit('setVideo', similarity);
-          // igual = similarity;
-          // console.log(igual)
-          // client.emit('setVideo', similarity);
-          // console.log(`The face at: ${position.Left}, ${position.Top} matches with ${similarity} % confidence`)
-          // return similarity;
-          // console.log(similarity);
           respuesta = similarity
           
         })
